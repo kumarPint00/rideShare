@@ -6,7 +6,7 @@ import NewRide from '../Components/NewRide';
 function Home() {
   return (
     <Container>
-      <Typography variant="h4">Welcome to our Ride-Sharing Dapp</Typography>
+      <Typography variant="h4" mt={4}>Welcome to our Ride-Sharing Dapp</Typography>
       <Typography variant="body1">
         Find a ride or offer a ride to your destination.
       </Typography>
