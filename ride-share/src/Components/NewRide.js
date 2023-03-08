@@ -9,6 +9,14 @@ function NewRide() {
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
 
+  const [formData, setFormData] = useState({
+    origin:'',
+    destination:'',
+    date:'',
+    time:'',
+
+  })
+
   const handleOriginChange = (event) => {
     setOrigin(event.target.value);
   };
@@ -25,38 +33,64 @@ function NewRide() {
     setTime(event.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // TODO: Implement ride offer submission logic
+  const handleSubmit = () => {
+    // event.preventDefault();
+  
+    console.log("button clicked");
+    console.log(formData)
+    fetch('/save-form-data', {
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify(formData)
+    })
+    .then(response=> response.json())
+    .then(data=>{
+      console.log(data);
+      alert("Ride offer submitted successfully");
+    })
+    .catch(error=>{
+      console.log(error);
+    });
   };
 
-  return (
+  const handleChange = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value
+    }))
+  }
+ return (
     <Container>
       <Typography variant="h1">Offer a Ride</Typography>
       <Typography variant="body1">
         Fill in the details to create a new ride offer.
       </Typography>
-      <form onSubmit={handleSubmit}>
+      {/* <form onSubmit={handleSubmit}> */}
         <TextField
+          name="origin"
           label="Origin"
-          value={origin}
-          onChange={handleOriginChange}
+          value={formData.origin}
+          onChange={handleChange}
           required
           fullWidth
           margin="normal"
         />
         <TextField
           label="Destination"
-          value={destination}
-          onChange={handleDestinationChange}
+          name="destination"
+          value={formData.destination}
+          onChange={handleChange}
           required
           fullWidth
           margin="normal"
         />
         <TextField
           label="Date"
-          value={date}
-          onChange={handleDateChange}
+          name='date'
+          value={formData.date}
+          onChange={handleChange}
           type="date"
           required
           fullWidth
@@ -67,8 +101,9 @@ function NewRide() {
         />
         <TextField
           label="Time"
-          value={time}
-          onChange={handleTimeChange}
+          name='time'
+          value={formData.time}
+          onChange={handleChange}
           type="time"
           required
           fullWidth
@@ -77,7 +112,7 @@ function NewRide() {
             shrink: true,
           }}
         />
-        <Button type="submit" variant="contained" color="primary" sx={{ mt: 4 }}>
+        <Button type="Button" onChange={handleSubmit} variant="contained" color="primary" sx={{ mt: 4 }}>
           Submit
         </Button>
         <Link to="/rides">
@@ -85,7 +120,7 @@ function NewRide() {
             Cancel
           </Button>
         </Link>
-      </form>
+      {/* </form> */}
     </Container>
   );
 }

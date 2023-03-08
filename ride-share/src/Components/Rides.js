@@ -6,7 +6,7 @@ import NewRide from './NewRide';
 function Rides() {
   return (
     <Container>
-      <Typography variant="h1">Find a Ride or Offer a Ride</Typography>
+      <Typography variant="h4">Find a Ride or Offer a Ride</Typography>
       <Typography variant="body1">
         Choose from the list of available rides or create your own ride offer.
       </Typography>
