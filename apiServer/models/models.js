@@ -13,6 +13,18 @@ const RideModel = new schema({
 
 }, { timestamps: true });
 
+const RideModelcentr = new schema({
+    Origin:String,
+    Destination:String,
+    Date:String,
+    Time:String,
+    Distance:String,
+    Duration:String,
+    RideId:String,
+
+})
+
 
 module.exports = mongoose.model('RideModel', RideModel);
+module.exports = mongoose.model('RideModelcentr', RideModelcentr);
 
