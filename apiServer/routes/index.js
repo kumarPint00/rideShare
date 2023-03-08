@@ -1,16 +1,10 @@
 const router = require('express').Router()
 const passport = require('passport')
 
-const loan= require('../controllers/loan');
-const shipment = require('../controllers/shipment');
+const ride= require('../controllers/ride');
 
-router.post('/createLoan',loan.createLoan);
-
-router.post('/createShipment', shipment.createShipment );
-
-router.put('/shipmentStatus', shipment.updateShipment);
-
-router.get('/shipmentStatus', shipment.getShipment);
+router.post('/createRide',ride.createRide);
+router.post('/joinRide', ride.joinRide);
 
 
 module.exports = router

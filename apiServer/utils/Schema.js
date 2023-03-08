@@ -2,48 +2,28 @@ const { CustomError } = require("./HandleResponseError");
 const { CHAINCODE_NAMES } = require("./helper");
 
 
-const Loan_SCHEMA = [
+const Ride_SCHEMA = [
   { "name": "Id" },
   { "name": "CreatedOn" },
   { "name": "CreatedBy" },
   { "name": "IsDelete" },
   { "name": "IsProcessed" },
-  { "name": "LoanId" },
-  { "name": "FirstName" },
-  { "name": "LastName" },
-  { "name": "DateOfBirth" },
-  { "name": "Gender" },
-  { "name": "MobileNum" },
-  { "name": "EmailId" },
-  { "name": "AadharCard" },
-  { "name": "PanCard" },
-  { "name": "LoanAmount" },
-  { "name": "LoanType" },
-  { "name": "IssuerName" },
-  { "name": "CIBIL" },
+  { "name": "RideId" },
+  { "name": "StartPoint" },
+  { "name": "EndPoint" },
+  { "name": "Stopage1" },
+  { "name": "Stopage2" },
+  { "name": "Stopage3" },
+  { "name": "Stopage4" },
+
 ];
 
-const Shipment_SCHEMA = [
-  { "name": "Id" },
-  { "name": "CreatedOn" },
-  { "name": "CreatedBy" },
-  { "name": "IsDelete" },
-  { "name": "IsHidden" },
-  { "name": "IsProcessed" },
-  { "name": "CurrentLocation" },
-  { "name": "ShipmentId" },
-  { "name": "Product" },
-  { "name": "StartDate" },
-  { "name": "Quantity" },
-  { "name": "Value" },
-];
 
 exports.getSchema = (chaincodeName) => {
   switch (chaincodeName) {
-    case CHAINCODE_NAMES.LOAN:
-      return Loan_SCHEMA;
-    case CHAINCODE_NAMES.SHIPMENT:
-      return Shipment_SCHEMA;
+    case CHAINCODE_NAMES.RIDE:
+      return Ride_SCHEMA;
+   
 
     default:
       throw new CustomError({
