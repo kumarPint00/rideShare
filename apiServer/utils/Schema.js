@@ -11,10 +11,10 @@ const Ride_SCHEMA = [
   { "name": "RideId" },
   { "name": "StartPoint" },
   { "name": "EndPoint" },
-  { "name": "Stopage1" },
-  { "name": "Stopage2" },
-  { "name": "Stopage3" },
-  { "name": "Stopage4" },
+  { "name": "Date" },
+  { "name": "Time" },
+  { "name": "Amount" },
+  { "name": "Distance" },
 
 ];
 

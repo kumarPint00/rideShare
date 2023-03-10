@@ -15,16 +15,19 @@ const endPoints = {
 function NewRide() {
 
   const [formData, setFormData] = useState({
-    origin: '',
-    destination: '',
-    date: '',
-    time: '',
+    RideId: '',
+    StartPoint: '',
+    EndPoint:'',
+    Date: '',
+    Time: '',
+    Amount:'',
+    Distance:''
   })
 
   const handleSubmit = () => {
     console.log("button clicked");
     console.log(formData)
-    axios.post(root+endPoints.createRide, { ...formData }).then(function (response) {
+    axios.post('http://127.0.0.1:9090/api/v1/createRide', { ...formData }).then(function (response) {
       console.log(response);
     }).catch(function (error) {
       console.log(error);
@@ -43,18 +46,27 @@ function NewRide() {
       <Typography variant="h5" mt={4}>Offer a Ride</Typography>
       <Typography variant="body1">Fill in the details to create a new ride offer</Typography>
       <TextField
-        name="origin"
-        label="Origin"
-        value={formData.origin}
+        name="RideId"
+        label="RideId"
+        value={formData.RideId}
         onChange={handleChange}
         required
         fullWidth
         margin="normal"
       />
       <TextField
-        label="Destination"
-        name="destination"
-        value={formData.destination}
+        label="StartPoint"
+        name="StartPoint"
+        value={formData.StartPoint}
+        onChange={handleChange}
+        required
+        fullWidth
+        margin="normal"
+      />
+       <TextField
+        label="EndPoint"
+        name="EndPoint"
+        value={formData.EndPoint}
         onChange={handleChange}
         required
         fullWidth
@@ -62,11 +74,11 @@ function NewRide() {
       />
       <TextField
         label="Date"
-        name='date'
-        value={formData.date}
+        name='Date'
+        value={formData.Date}
         InputProps={{ inputProps: { min: new Date().toJSON().slice(0, 10), max: "2045-12-31" } }}
         onChange={handleChange}
-        type="date"
+        type="Date"
         required
         fullWidth
         margin="normal"
@@ -76,10 +88,36 @@ function NewRide() {
       />
       <TextField
         label="Time"
-        name='time'
-        value={formData.time}
+        name='Time'
+        value={formData.Time}
         onChange={handleChange}
-        type="time"
+        type="Time"
+        required
+        fullWidth
+        margin="normal"
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
+            <TextField
+        label="Amount"
+        name='Amount'
+        value={formData.Amount}
+        onChange={handleChange}
+        type="Amount"
+        required
+        fullWidth
+        margin="normal"
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
+            <TextField
+        label="Distance"
+        name='Distance'
+        value={formData.Distance}
+        onChange={handleChange}
+        type="Distance"
         required
         fullWidth
         margin="normal"

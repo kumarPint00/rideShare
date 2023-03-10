@@ -6,6 +6,7 @@ const ridecentre = require('../controllers/ridecentr')
 
 router.post('/createRide',ride.createRide);
 router.post('/joinRide', ride.joinRide);
+router.get('/getAllRides', ride.getAllRides);
 
 router.post('/ridecentre', ridecentre.ridecentr)
 

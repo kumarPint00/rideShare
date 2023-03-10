@@ -1,21 +1,34 @@
-import React from 'react';
-import { Container, Typography, Button } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Container, Typography, Button, Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
-import NewRide from '../Components/NewRide';
+import axios from 'axios';
 
 function Home() {
+
+
+
   return (
-    <Container>
-      <Typography variant="h4" mt={4}>Welcome to our Ride-Sharing Dapp</Typography>
-      <Typography variant="body1">
-        Find a ride or offer a ride to your destination.
+    <Container maxWidth="md" color='secondary'>
+
+      <Typography variant="h3" mt={2} component="h4" align='centre' noWrap='true'>Welcome to our Ride-Sharing Dapp</Typography>
+      <Typography variant="body1" align='centre' mt={4}>
+        Choose from the list of available rides
       </Typography>
-      {/* <Link to="/NewRide" > */}
-        <a><NewRide/></a>
+
+      <Link to="/rides">
         <Button variant="contained" color="primary" sx={{ mt: 4 }}>
-          View Rides
+          Find a Rides
         </Button>
-      {/* </Link> */}
+      </Link>
+      <Typography variant="h3" mt={4}> Offer a Ride</Typography>
+      <Typography variant="body1" mt={4}>
+        create your own ride offer.
+      </Typography>
+      <Link to="/NewRide" >
+        <Button variant="contained" color="primary" sx={{ mt: 4 }}>
+          Offer a Ride
+        </Button>
+      </Link>
     </Container>
   );
 }

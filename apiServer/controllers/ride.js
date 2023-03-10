@@ -12,10 +12,10 @@ exports.createRide = async (req, res) => {
       RideId,
       StartPoint,
       EndPoint,
-      Stopage1,
-      Stopage2,
-      Stopage3,
-      Stopage4,
+      Date,
+      Time,
+      Amount,
+      Distance,
    
     }= req.body;
     // console.log('0')
@@ -30,10 +30,10 @@ exports.createRide = async (req, res) => {
         RideId,
         StartPoint,
         EndPoint,
-        Stopage1,
-        Stopage2,
-        Stopage3,
-        Stopage4,
+        Date,
+        Time,
+        Amount,
+        Distance,
       }
       // console.log('1')
       console.log(data)
@@ -57,10 +57,43 @@ exports.createRide = async (req, res) => {
 
     
   }catch(err){
-    res.send("err")
-  }
+    res.status(404).json({
+        status:404,
+        message:"Not Found"
+})}
 }
+exports.getAllRides = async(req,res)=>{
+  try{
+    let query ={ selector :{ IsProcessed:false}}
+    console.log(query)
 
+    let queryString = JSON.stringify(query);
+    console.log(queryString)
+    let dataStr1 = await invokeTransaction({
+      metaInfo:{userName:"pintu", org:"org1MSP"},
+      chainCodeAction:CHAINCODE_ACTIONS.GET,
+      channelName:CHAINCODE_CHANNEL,
+      data:queryString,
+      chainCodeFunctionName:'querystring',
+      chainCodeName:CHAINCODE_NAMES.RIDE
+  })
+  console.log(dataStr1)
+
+  let dataObtain = JSON.parse(dataStr1);
+
+  console.log(dataObtain)
+
+  res.status(200).json({
+    status:'success',
+    message:dataObtain
+  })
+
+  }catch(err){
+      res.status(404).json({
+          status:404,
+          message:"Not Found"
+  })}
+}
 
 exports.joinRide= async (req, res)=>{
   try{

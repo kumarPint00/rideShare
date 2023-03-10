@@ -4,6 +4,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Home from './pages/Home';
 import Rides from './Components/Rides';
 import { Link, Button } from '@mui/material';
+import NewRide from './Components/NewRidev0';
 
 
 const theme = createTheme();
@@ -15,8 +16,11 @@ function App() {
      
       <Router>
         <Routes>
-          <Route exact path="/" element={<Home/>} />
-          <Route path="/rides" element={<Rides/>} />
+          <Route exact path='/' element={<Home/>}>Home</Route>
+       
+          <Route path="/rides" element={<Rides/>}>Ride</Route>
+
+          <Route path='/NewRide' element={<NewRide/>}>New Ride</Route>
         </Routes>
       </Router>
 

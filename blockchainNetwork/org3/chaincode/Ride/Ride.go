@@ -16,19 +16,18 @@ type RideChaincode struct {
 }
 
 type Ride struct {
-	Id                  string    `json:"Id"`
-	CreatedOn           time.Time `json:"CreatedOn"`
-	CreatedBy           string    `json:"CreatedBy"`
-	IsDelete            bool      `json:"IsDelete"`
-	IsProcessed         bool      `json:"IsProcessed"`
-	RideId                string    `json:"RideId"`
-	StartPoint               string    `json:"StartPoint"`
-	EndPoint          string    `json:"EndPoint"`
-	Stopage1          string    `json:"Stopage1"`
-	Stopage2           string    `json:"Stopage2"`
-	Stopage3                 string    `json:"Stopage3"`
-	Stopage4        string    `json:"Stopage4"`
-
+	Id          string    `json:"Id"`
+	CreatedOn   time.Time `json:"CreatedOn"`
+	CreatedBy   string    `json:"CreatedBy"`
+	IsDelete    bool      `json:"IsDelete"`
+	IsProcessed bool      `json:"IsProcessed"`
+	RideId      string    `json:"RideId"`
+	StartPoint  string    `json:"StartPoint"`
+	EndPoint    string    `json:"EndPoint"`
+	Date        string    `json:"Date"`
+	Time        string    `json:"Time"`
+	Amount      string    `json:"Amount"`
+	Distance    string    `json:"Distance"`
 }
 
 func (cc *RideChaincode) create(stub shim.ChaincodeStubInterface, arg []string) peer.Response {
@@ -57,18 +56,18 @@ func (cc *RideChaincode) create(stub shim.ChaincodeStubInterface, arg []string) 
 	}
 
 	data := Ride{
-		Id:                  args[0],
-		CreatedOn:           dateValue1,
-		CreatedBy:           args[2],
-		IsDelete:            boolValue3,
-		IsProcessed:         boolValue4,
-		RideId:                args[5],
-		StartPoint:               args[6],
-		EndPoint:          args[7],
-		Stopage1:          args[8],
-		Stopage2:           args[9],
-		Stopage3:                 args[10],
-		Stopage4:        args[11],
+		Id:          args[0],
+		CreatedOn:   dateValue1,
+		CreatedBy:   args[2],
+		IsDelete:    boolValue3,
+		IsProcessed: boolValue4,
+		RideId:      args[5],
+		StartPoint:  args[6],
+		EndPoint:    args[7],
+		Date:        args[8],
+		Time:        args[9],
+		Amount:      args[10],
+		Distance:    args[11],
 	}
 
 	dataBytes, errMarshal := json.Marshal(data)
@@ -125,19 +124,18 @@ func (cc *RideChaincode) update(stub shim.ChaincodeStubInterface, arg []string) 
 		return shim.Error("Error converting string to bool: " + err4.Error())
 	}
 	data := Ride{
-		Id:                  args[0],
-		CreatedOn:           dateValue1,
-		CreatedBy:           args[2],
-		IsDelete:            boolValue3,
-		IsProcessed:         boolValue4,
-		RideId:                args[5],
-		StartPoint:               args[6],
-		EndPoint:          args[7],
-		Stopage1:          args[8],
-		Stopage2:           args[9],
-		Stopage3:                 args[10],
-		Stopage4:        args[11],
-	
+		Id:          args[0],
+		CreatedOn:   dateValue1,
+		CreatedBy:   args[2],
+		IsDelete:    boolValue3,
+		IsProcessed: boolValue4,
+		RideId:      args[5],
+		StartPoint:  args[6],
+		EndPoint:    args[7],
+		Date:        args[8],
+		Time:        args[9],
+		Amount:      args[10],
+		Distance:    args[11],
 	}
 
 	dataBytes, errMarshal := json.Marshal(data)
