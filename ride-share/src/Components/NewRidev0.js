@@ -1,17 +1,20 @@
 import React from 'react';
 import { useState } from 'react';
 import { Container, Typography, TextField, Button } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import axios from 'axios'
 // import { startride, joinRide } from '../api/Api';
+// import  useHistory  from "react-router-dom";
 const root = {
   baseUrl: "http://localhost:9090/api/v1/",
 }
 const endPoints = {
   createRide: 'createRide',
   joinRide: "joinRide",
+  ridecentre:'ridecentre'
   
 }
+
 function NewRide() {
 
   const [formData, setFormData] = useState({
@@ -20,19 +23,29 @@ function NewRide() {
     EndPoint:'',
     Date: '',
     Time: '',
-    Amount:'',
+    RideShareCoins:'',
     Distance:''
   })
-
+const [count , setCount] = useState(0);
+  const navigate = useNavigate();
   const handleSubmit = () => {
     console.log("button clicked");
     console.log(formData)
-    axios.post('http://127.0.0.1:9090/api/v1/createRide', { ...formData }).then(function (response) {
+    axios.post("http://localhost:9090/api/v1/createRide", { ...formData }).then(function (response) {
       console.log(response);
+      alert("Your Ride Created Successfully")
     }).catch(function (error) {
       console.log(error);
     });
+    setTimeout(() => {
+      navigate('/');
+    }, 2000);
+    
   };
+
+  const handleRender =()=>{
+    setCount(count+1);
+  }
 
   const handleChange = (e) => {
     setFormData((prevState) => ({
@@ -48,8 +61,8 @@ function NewRide() {
       <TextField
         name="RideId"
         label="RideId"
-        value={formData.RideId}
-        onChange={handleChange}
+        value={count}
+        onChange={handleRender}
         required
         fullWidth
         margin="normal"
@@ -100,11 +113,11 @@ function NewRide() {
         }}
       />
             <TextField
-        label="Amount"
-        name='Amount'
-        value={formData.Amount}
+        label="RideShareCoins"
+        name='RideShareCoins'
+        value={formData.RideShareCoins}
         onChange={handleChange}
-        type="Amount"
+        type="RideShareCoins"
         required
         fullWidth
         margin="normal"

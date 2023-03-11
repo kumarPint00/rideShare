@@ -14,7 +14,7 @@ exports.createRide = async (req, res) => {
       EndPoint,
       Date,
       Time,
-      Amount,
+      RideShareCoins,
       Distance,
    
     }= req.body;
@@ -32,7 +32,7 @@ exports.createRide = async (req, res) => {
         EndPoint,
         Date,
         Time,
-        Amount,
+        RideShareCoins,
         Distance,
       }
       // console.log('1')
@@ -84,8 +84,7 @@ exports.getAllRides = async(req,res)=>{
   console.log(dataObtain)
 
   res.status(200).json({
-    status:'success',
-    message:dataObtain
+    dataObtain
   })
 
   }catch(err){

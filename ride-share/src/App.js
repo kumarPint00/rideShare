@@ -5,8 +5,7 @@ import Home from './pages/Home';
 import Rides from './Components/Rides';
 import { Link, Button } from '@mui/material';
 import NewRide from './Components/NewRidev0';
-
-
+import JoinRide from './Components/JoinRide';
 const theme = createTheme();
 
 function App() {
@@ -21,6 +20,7 @@ function App() {
           <Route path="/rides" element={<Rides/>}>Ride</Route>
 
           <Route path='/NewRide' element={<NewRide/>}>New Ride</Route>
+          <Route path='/JoinRide' element={<JoinRide/>}></Route>
         </Routes>
       </Router>
 

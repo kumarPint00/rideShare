@@ -1,53 +1,72 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Typography, Button, Grid } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper} from '@material-ui/core'
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core'
+
+const handleActionClick = () => {
+  console.log("You click me")
+}
+
+
+
 
 function Rides() {
-  const [data , setData] = useState([]);
-
-  useEffect(()=>{
-    axios.get('http://127.0.0.1:9090/api/v1/getAllRides').then(payload =>{
-      setData(payload)
-    }).catch(error => console.log(error))
-  })
+  let [ridesavailable, setridesavailable] = useState([]);
+  const navigate= useNavigate()
+  // useEffect(()=>{
+  //   axios.get('http://127.0.0.1:9090/api/v1/getAllRides').then(payload =>{
+  //     setridesavailable(payload.ridesavailable)
+  //   }).catch(error => console.log(error))
+  // })
+ 
+  useEffect(() => {
+    fetch('http://127.0.0.1:9090/api/v1/getAllRides')
+    .then(result => result.json())
+      .then(resp => setridesavailable(resp.dataObtain))
+      .catch(error=>console.error(error));
+  }, []);
+  console.log("ridesavailable"+JSON.stringify(ridesavailable));
   return (
-   <div>
-    <TableContainer component = {Paper}>
+    <div>
+      <TableContainer component={Paper}>
 
-      <Table>
-        <TableHead>
-          <TableRow>
-          <TableCell>RideId</TableCell> 
-          <TableCell>IsProcessed</TableCell>
-          <TableCell>StartPoint</TableCell>
-          <TableCell>EndPoint</TableCell>
-          <TableCell>Date</TableCell>
-          <TableCell>Time</TableCell>
-          <TableCell>Amount</TableCell>
-          <TableCell>Distance</TableCell>
-           
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map((item, index)=>(
-            <TableRow key={index}>
-              <TableCell>{item.RideId}</TableCell>
-              <TableCell>{item.IsProcessed}</TableCell>
-              <TableCell>{item.StartPoint}</TableCell>
-              <TableCell>{item.EndPoint}</TableCell>
-              <TableCell>{item.Date}</TableCell>
-              <TableCell>{item.Time}</TableCell>
-              <TableCell>{item.Amount}</TableCell>
-              <TableCell>{item.Distance}</TableCell>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>RideId</TableCell>
+              {/* <TableCell>IsProcessed</TableCell> */}
+              <TableCell>StartPoint</TableCell>
+              <TableCell>EndPoint</TableCell>
+              <TableCell>Date</TableCell>
+              <TableCell>Time</TableCell>
+              <TableCell>RideShareCoins</TableCell>
+              <TableCell>Distance</TableCell>
+              <TableCell>Action</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {ridesavailable.map(item => (
+              <TableRow key={item.id}>
+                <TableCell>{item.RideId}</TableCell>
+                {/* <TableCell>{item.IsProcessed}</TableCell> */}
+                <TableCell>{item.StartPoint}</TableCell>
+                <TableCell>{item.EndPoint}</TableCell>
+                <TableCell>{item.Date}</TableCell>
+                <TableCell>{item.Time}</TableCell>
+                <TableCell>{item.RideShareCoins}</TableCell>
+                <TableCell>{item.Distance}</TableCell>
+                <TableCell>
+                  <Button variant="contained" onClick={() =>navigate('/joinride') }>Book Ride</Button>
+                </TableCell>
+              </TableRow>
+            ))}
 
-   </div>
+          </TableBody>
+        </Table>
+      </TableContainer>
+
+    </div>
   );
 }
 

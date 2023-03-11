@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function JoinRidePage() {
+export default function JoinRidePage() {
   const [rides, setRides] = useState([]);
   const [selectedRide, setSelectedRide] = useState(null);
   const [name, setName] = useState('');

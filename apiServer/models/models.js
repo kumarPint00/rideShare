@@ -7,20 +7,20 @@ const RideModel = new schema({
     EndPoint: String,
     Date:String,
     Time:String,
-    Amount:String,
+    RideShareCoins:String,
     Distance:String
 
 
 }, { timestamps: true });
 
 const RideModelcentr = new schema({
-    Origin:String,
-    Destination:String,
+    RideId: String,
+    StartPoint: String,
+    EndPoint: String,
     Date:String,
     Time:String,
-    Distance:String,
-    Duration:String,
-    RideId:String,
+    RideShareCoins:String,
+    Distance:String
 
 })
 

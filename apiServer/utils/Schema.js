@@ -13,7 +13,7 @@ const Ride_SCHEMA = [
   { "name": "EndPoint" },
   { "name": "Date" },
   { "name": "Time" },
-  { "name": "Amount" },
+  { "name": "RideShareCoins" },
   { "name": "Distance" },
 
 ];

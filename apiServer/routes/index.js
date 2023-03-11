@@ -10,5 +10,8 @@ router.get('/getAllRides', ride.getAllRides);
 
 router.post('/ridecentre', ridecentre.ridecentr)
 
+router.get('/createRideCnte', ridecentre.getRidecntr);
+router.get('/getoneride/:id', ridecentre.getRidebyId);
+router.post('/joinridecrnte', ridecentre.joinRide);
 
 module.exports = router
