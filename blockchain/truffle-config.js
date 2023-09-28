@@ -1,3 +1,4 @@
+const HDWalletProvider = require('truffle-hdwallet-provider');
 /**
  * Use this file to configure your truffle project. It's seeded with some
  * common settings for different networks and features like migrations,
@@ -37,17 +38,22 @@ module.exports = {
 
     networks: {
       bscTestnet: {
-        provider: () => new HDWalletProvider({
-          mnemonic: {
-            phrase: "sail matrix include digital wine they craft ceiling creek symbol media network"
-          },
-          providerOrUrl: "https://data-seed-prebsc-1-s1.binance.org:8545/"
-        }),
+        provider: () => new HDWalletProvider("sail matrix include digital wine they craft ceiling creek symbol media network", "https://data-seed-prebsc-1-s1.binance.org:8545/"
+      ,
+      // {
+      //     mnemonic: {
+      //       phrase: "sail matrix include digital wine they craft ceiling creek symbol media network"
+      //     },
+      //     providerOrUrl: "https://data-seed-prebsc-1-s1.binance.org:8545/"
+      //   })
+        ),
         network_id: 97, // BSC testnet network id
-        gas: 2000000,   // Gas limit
-        gasPrice: 1000000000, // Gas price (in wei)
+        gas: 20000000,   // Gas limit
+        gasPrice: 10000000000, // Gas price (in wei)
       },
     },
+
+
 
   
   // networks: {
@@ -98,7 +104,7 @@ module.exports = {
   compilers: {
     solc: {
       version: "0.8.9",    // Fetch exact version from solc-bin (default: truffle's version)
-      docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
+      // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
       settings: {          // See the solidity docs for advice about optimization and evmVersion
        optimizer: {
          enabled: false,
